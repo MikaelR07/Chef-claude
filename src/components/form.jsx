@@ -11,19 +11,15 @@ export default function Form() {
       {ingredient}
     </li>
   ));
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(e.currentTarget);
-    const formData = new FormData(e.currentTarget);
+  const addIngredient = (formData) => {
     const newIngredient = formData.get("ingredient");
 
     setIngredients((ingredientsArr) => [newIngredient, ...ingredientsArr]);
-    e.currentTarget.reset();
   };
 
   return (
     <>
-      <form className="recipe-form" onSubmit={handleSubmit}>
+      <form action={addIngredient} className="recipe-form">
         <input
           className="recipe-input"
           type="text"
