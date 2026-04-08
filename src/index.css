@@ -69,6 +69,7 @@ header {
   gap: 2rem;
 }
 .intro-message {
+  color: rgb(237, 236, 236);
   font-weight: 500;
   padding-top: 3rem;
 }
