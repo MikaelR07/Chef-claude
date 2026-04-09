@@ -1,16 +1,13 @@
-# React + Vite
+🍳 Claude Chef
+Claude Chef is a smart recipe generator built with React that helps you turn the ingredients you have at home into delicious meals.
+Powered by Hugging Face's AI models, the app takes a list of ingredients from you and instantly generates creative, step-by-step recipes tailored to what’s in your kitchen.
+✨ Features
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Simple and intuitive ingredient input
+AI-powered recipe generation
+Clean, modern React interface
+Fast responses using Hugging Face Inference API
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+🎯 How it Works
+Just type the ingredients you have (e.g., chicken, rice, tomatoes, garlic), hit generate, and let Claude Chef create a complete recipe with instructions, prep time, and serving suggestions.
+Perfect for reducing food waste and discovering new meals with whatever you already have!
