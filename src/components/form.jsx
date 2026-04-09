@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import GetRecipe from "./getRecipe";
 export default function Form() {
   const ingredients = [];
   // const ingredientsList = ingredients.map((ingredient) => (
@@ -34,6 +34,7 @@ export default function Form() {
         <>
           <h1 className="no-ingredient">Ingredients added:</h1>
           <ul className="ingredient-list">{ingredientsList}</ul>
+          <GetRecipe />
         </>
       )}
     </>
