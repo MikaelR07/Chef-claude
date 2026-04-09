@@ -28,7 +28,8 @@ export default function Form() {
         />
         <button type="submit"> Add ingredient</button>
       </form>
-      {ingredientsList.length < 1 ? (
+      {
+        /* {ingredientsList.length < 1 ? (
         <h1 className="no-ingredient">No ingredients added</h1>
       ) : (
         <>
@@ -36,7 +37,16 @@ export default function Form() {
           <ul className="ingredient-list">{ingredientsList}</ul>
           <GetRecipe />
         </>
-      )}
+      )} */
+
+        ingredientsList.length > 0 && (
+          <>
+            <h1 className="no-ingredient">Ingredients added:</h1>
+            <ul className="ingredient-list">{ingredientsList}</ul>
+            <GetRecipe />
+          </>
+        )
+      }
     </>
   );
 }

@@ -163,6 +163,7 @@ header {
 
 .recipe-request {
   display: flex;
+  flex-wrap: wrap;
   color: white;
   background: rgba(248, 248, 248, 0.1);
   justify-content: space-between;
