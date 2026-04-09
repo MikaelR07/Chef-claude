@@ -5,7 +5,7 @@ function App() {
   return (
     <>
       <Particles
-        particleColors={["#ffffff"]}
+        particleColors={["fb542b"]}
         particleCount={1000}
         particleSpread={10}
         speed={0.1}
