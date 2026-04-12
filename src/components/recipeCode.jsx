@@ -17,30 +17,35 @@ function parseRecipe(recipeText) {
   };
 
   const headingIndex = lines.findIndex((line) =>
-    line.toLowerCase().startsWith("chef claude recommends")
+    /chef\s+claude\s+recommends/i.test(line)
   );
   if (headingIndex !== -1) {
     data.heading = lines[headingIndex].replace(/:$/, "");
   }
 
   const introIndex = lines.findIndex((line) =>
-    line.toLowerCase().startsWith("based on the ingredients")
+    /based on the ingredients/i.test(line)
   );
   if (introIndex !== -1) {
     data.intro = lines[introIndex];
   }
 
   const ingredientsIndex = lines.findIndex((line) =>
-    line.toLowerCase().startsWith("ingredients")
+    /^(#+\s*)?ingredients\b/i.test(line)
   );
   const instructionsIndex = lines.findIndex((line) =>
-    line.toLowerCase().startsWith("instructions")
+    /^(#+\s*)?(instructions|directions|method)\b/i.test(line)
   );
 
   if (ingredientsIndex > -1) {
     const titleCandidate = lines[ingredientsIndex - 1];
-    if (titleCandidate && !titleCandidate.toLowerCase().startsWith("based on")) {
-      data.title = titleCandidate;
+    if (
+      titleCandidate &&
+      !/based on/i.test(titleCandidate) &&
+      !/chef\s+claude\s+recommends/i.test(titleCandidate) &&
+      !/^(#+\s*)?ingredients\b/i.test(titleCandidate)
+    ) {
+      data.title = titleCandidate.replace(/^#+\s*/, "");
     }
   }
 
@@ -48,15 +53,23 @@ function parseRecipe(recipeText) {
     const end = instructionsIndex > -1 ? instructionsIndex : lines.length;
     data.ingredients = lines
       .slice(ingredientsIndex + 1, end)
-      .filter((line) => line.startsWith("- "))
-      .map((line) => line.replace(/^- /, ""));
+      .filter((line) => /^([-*•]\s+).+/.test(line))
+      .map((line) => line.replace(/^[-*•]\s+/, ""));
   }
 
   if (instructionsIndex > -1) {
-    data.instructions = lines
-      .slice(instructionsIndex + 1)
-      .filter((line) => /^\d+\./.test(line))
-      .map((line) => line.replace(/^\d+\.\s*/, ""));
+    const instructionLines = lines.slice(instructionsIndex + 1);
+    const numbered = instructionLines
+      .filter((line) => /^\d+[\.)]/.test(line))
+      .map((line) => line.replace(/^\d+[\.)]\s*/, ""));
+
+    if (numbered.length) {
+      data.instructions = numbered;
+    } else {
+      data.instructions = instructionLines
+        .filter((line) => /^([-*•]\s+).+/.test(line))
+        .map((line) => line.replace(/^[-*•]\s+/, ""));
+    }
   }
 
   return data;
@@ -64,8 +77,7 @@ function parseRecipe(recipeText) {
 
 export default function RecipeCode({ recipeText }) {
   const recipe = parseRecipe(recipeText || "");
-  const hasStructured =
-    recipe.title && recipe.ingredients.length && recipe.instructions.length;
+  const hasStructured = recipe.ingredients.length && recipe.instructions.length;
   const [showMarkdown, setShowMarkdown] = useState(false);
   const [copied, setCopied] = useState(false);
 
