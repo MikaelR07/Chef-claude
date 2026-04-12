@@ -27,7 +27,7 @@ export default function GetRecipe({ ingredients }) {
       <div className="recipe-request">
         <div className="get-recipe">
           <h1>Ready for a recipe?</h1>
-          <p>Generate a recipe from list of ingredients.</p>
+          <p>Generate a recipe from your list of ingredients.</p>
         </div>
         <button
           onClick={getRecipe}
