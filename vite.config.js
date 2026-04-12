@@ -8,5 +8,13 @@ export default defineConfig({
   server: {
     host: true,
     allowedHosts: ["localhost", "127.0.0.1"],
+    proxy: {
+      "/hf": {
+        target: "https://router.huggingface.co",
+        changeOrigin: true,
+        secure: true,
+        rewrite: (path) => path.replace(/^\/hf/, ""),
+      },
+    },
   },
 });
