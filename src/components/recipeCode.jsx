@@ -17,24 +17,24 @@ function parseRecipe(recipeText) {
   };
 
   const headingIndex = lines.findIndex((line) =>
-    /chef\s+claude\s+recommends/i.test(line)
+    /chef\s+claude\s+recommends/i.test(line),
   );
   if (headingIndex !== -1) {
     data.heading = lines[headingIndex].replace(/:$/, "");
   }
 
   const introIndex = lines.findIndex((line) =>
-    /based on the ingredients/i.test(line)
+    /based on the ingredients/i.test(line),
   );
   if (introIndex !== -1) {
     data.intro = lines[introIndex];
   }
 
   const ingredientsIndex = lines.findIndex((line) =>
-    /^(#+\s*)?ingredients\b/i.test(line)
+    /^(#+\s*)?ingredients\b/i.test(line),
   );
   const instructionsIndex = lines.findIndex((line) =>
-    /^(#+\s*)?(instructions|directions|method)\b/i.test(line)
+    /^(#+\s*)?(instructions|directions|method)\b/i.test(line),
   );
 
   if (ingredientsIndex > -1) {
@@ -95,12 +95,12 @@ export default function RecipeCode({ recipeText }) {
     <section>
       <h2>{recipe.heading}</h2>
       <article className="suggested-recipe-container" aria-live="polite">
-        {!hasStructured && (
+        {/* {!hasStructured && (
           <p className="recipe-fallback">
             The response format was a little different, so we’re showing the
             markdown directly.
           </p>
-        )}
+        )} */}
         <div className="recipe-actions">
           <button
             className="recipe-action-button"
