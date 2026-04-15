@@ -109,13 +109,13 @@ export default function RecipeCode({ recipeText }) {
           >
             {copied ? "Copied!" : "Copy recipe"}
           </button>
-          <button
+          {/* <button
             className="recipe-action-button secondary"
             onClick={() => setShowMarkdown((prev) => !prev)}
             disabled={!recipeText}
           >
             {showMarkdown ? "Hide markdown" : "Show markdown"}
-          </button>
+          </button> */}
         </div>
         {hasStructured && (
           <div className="recipe-quickview">
@@ -135,7 +135,7 @@ export default function RecipeCode({ recipeText }) {
             </ol>
           </div>
         )}
-        {showMarkdown && (
+        {/* {showMarkdown && (
           <div className="recipe-markdown">
             <ReactMarkdown>{recipeText || "No recipe yet."}</ReactMarkdown>
           </div>
@@ -144,7 +144,7 @@ export default function RecipeCode({ recipeText }) {
           <div className="recipe-markdown">
             <ReactMarkdown>{recipeText || "No recipe yet."}</ReactMarkdown>
           </div>
-        )}
+        )} */}
       </article>
     </section>
   );
